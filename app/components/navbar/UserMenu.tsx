@@ -1,12 +1,15 @@
 "use client";
 
+import useRegisterModal from "@/app/hooks/useRegisterModal";
 import { useCallback, useState } from "react";
 import { AiOutlineMenu } from "react-icons/ai";
-import Avatar from "../avatar/Avatar";
+import Avatar from "../Avatar";
 import MenuItem from "./MenuItem";
 
 const UserMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
+
+  const registerModal = useRegisterModal();
 
   const toggleOpen = useCallback(() => {
     setIsOpen(prv => !prv);
@@ -15,7 +18,6 @@ const UserMenu = () => {
     <div className="relative">
       <div className="flex flex-row items-center gap-3">
         <div
-          onClick={toggleOpen}
           className="hidden md:block
             text-sm
             font-semibold
@@ -29,6 +31,7 @@ const UserMenu = () => {
           Airbnb your home
         </div>
         <div
+          onClick={toggleOpen}
           className="p-4 md:py-1
             md:px-2 
             border-[1px]
@@ -69,7 +72,7 @@ const UserMenu = () => {
           >
             <>
               <MenuItem onClick={() => {}} label="Login" />
-              <MenuItem onClick={() => {}} label="Sign up" />
+              <MenuItem onClick={registerModal.onOpen} label="Sign up" />
             </>
           </div>
         </div>
